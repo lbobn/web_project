@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.llu</groupId>
+    <artifactId>maven-proj01</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+    </properties>
+
+
+    <!--依赖配置-->
+    <dependencies>
+        <dependency>
+            <!--依赖具有传递性-->
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.3</version>
+            <!--排除依赖-->
+            <!--
+            <exclusions>
+                <exclusion>
+                    <groupId>api</groupId>
+                    <artifactId>api</artifactId>
+                </exclusion>
+            </exclusions>
+            -->
+
+            <!--依赖作用范围:compile:主,测,打包
+                            test:测,
+                            provided:主,测
+                            runtime:测,打包
+                            -->
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+</project>

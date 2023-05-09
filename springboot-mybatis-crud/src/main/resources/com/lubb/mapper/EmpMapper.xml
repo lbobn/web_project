@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lubb.mapper.EmpMapper">
+
+    <sql id="commonSql">
+        select id,
+               username,
+               password,
+               name,
+               gender,
+               image,
+               job,
+               entrydate,
+               dept_id,
+               create_time,
+               update_time
+        from emp
+    </sql>
+
+    <update id="update2">
+        update emp
+        <set>
+            <if test="username != null">username=#{username}</if>
+            <if test="name != null">name=#{name}</if>
+            <if test="gender != null">gender=#{gender}</if>
+            <if test="image != null">image=#{image}</if>
+            <if test="job != null">job=#{job}</if>
+            <if test="entryDate != null">entrydate=#{entryDate},</if>
+            <if test="deptId != null">dept_id=#{deptId},</if>
+            <if test="updateTime != null">update_time=#{updateTime}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+
+    <delete id="deleteByIds">
+        delete from emp where id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+
+    <!--    resultType单条记录所封装的类型-->
+    <select id="list" resultType="com.lubb.pojo.Emp">
+        <include refid="commonSql"/>
+        /*select *
+        from emp*/
+        <where>
+            <if test="name != null">
+                name like concat('%', #{name}, '%')
+            </if>
+            <if test="gender != null">
+                and gender = #{gender}
+            </if>
+            <if test="start != null and end != null">
+                and entrydate between #{start} and #{end}
+            </if>
+        </where>
+        order by update_time desc
+    </select>
+
+
+    <!--<select id="list" resultType="com.lubb.pojo.Emp">
+        select * from emp where name like concat('%', #{name}, '%') and gender=#{gender} and entrydate between #{start} and #{end}
+    </select>
+-->
+
+</mapper>
