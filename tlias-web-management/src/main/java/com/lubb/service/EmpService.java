@@ -26,4 +26,12 @@ public interface EmpService {
      * 新增员工
      * */
     void insert(Emp emp);
+
+    /**
+     * 员工登录
+     *
+     * @param emp
+     * @return
+     */
+    Emp login(Emp emp);
 }

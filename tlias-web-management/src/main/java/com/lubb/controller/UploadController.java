@@ -19,7 +19,7 @@ public class UploadController {
         log.info("文件上传");
         //springboot 中默认单个文件最大为1M
 
-        String originalFilename = image.getOriginalFilename();
+        String originalFilename = image.getOriginalFilename();//获取文件原始名
         int index = originalFilename.lastIndexOf(".");
         String extname = originalFilename.substring(index);
         String newFIleName = UUID.randomUUID().toString() + extname;
