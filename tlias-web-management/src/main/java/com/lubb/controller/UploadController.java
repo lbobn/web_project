@@ -16,7 +16,7 @@ public class UploadController {
 
     @PostMapping("upload")
     public Result upload(String username, Integer age, MultipartFile image) throws IOException {
-        log.info("文件上传");
+        log.info("文件上传{}", image);
         //springboot 中默认单个文件最大为1M
 
         String originalFilename = image.getOriginalFilename();//获取文件原始名
