@@ -16,13 +16,15 @@ public class UploadController {
 
     @PostMapping("upload")
     public Result upload(String username, Integer age, MultipartFile image) throws IOException {
-        log.info("文件上传{}", image);
+        log.info("文件上传{},{},{}", username, age, image);
         //springboot 中默认单个文件最大为1M
 
         String originalFilename = image.getOriginalFilename();//获取文件原始名
         int index = originalFilename.lastIndexOf(".");
         String extname = originalFilename.substring(index);
         String newFIleName = UUID.randomUUID().toString() + extname;
+
+
         log.info("新文件名{}", newFIleName);
 
         //
