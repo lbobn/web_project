@@ -16,8 +16,8 @@ import java.util.UUID;
 public class AliOSSUtils {
 
     private String endpoint = "https://oss-cn-beijing.aliyuncs.com";
-    private String accessKeyId = "LTAI5tSDsTJEkbNQEg93CThs";
-    private String accessKeySecret = "pTYbv1rLHv8UVtJvRhN83AV4UJe7LD";
+    private String accessKeyId = "";
+    private String accessKeySecret = "";
     private String bucketName = "web-tlias-lbb";
 
     /**
