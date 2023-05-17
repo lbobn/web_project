@@ -27,6 +27,16 @@ public interface EmpService {
      * */
     void insert(Emp emp);
 
+
+    /**
+     * 根据id查询员工
+     *
+     * @param id
+     * @return
+     */
+    Emp getById(Integer id);
+
+
     /**
      * 员工登录
      *
@@ -34,4 +44,11 @@ public interface EmpService {
      * @return
      */
     Emp login(Emp emp);
+
+    /**
+     * 员工更新
+     *
+     * @param emp
+     */
+    void update(Emp emp);
 }

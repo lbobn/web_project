@@ -51,4 +51,16 @@ public interface EmpMapper {
      */
     @Select("select * from emp where username = #{username} and password = #{password}")
     Emp getByUsernameAndPassword(Emp emp);
+
+    /**
+     * 根据id查询员工
+     *
+     * @param id
+     * @return
+     */
+    @Select("select * from emp where id = #{id}")
+    Emp getById(Integer id);
+
+
+    void update(Emp emp);
 }
