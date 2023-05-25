@@ -19,6 +19,7 @@ public class SessionController {
         return Result.success();
     }
 
+    //获取cookie
     @GetMapping("/c2")
     public Result cookie2(HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
