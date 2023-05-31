@@ -1,35 +1,28 @@
-package com.lubb.filter;
+package com.lubb.interceptor;
 
 import com.alibaba.fastjson.JSONObject;
 import com.lubb.pojo.Result;
 import com.lubb.utils.JwtUtils;
-import jakarta.servlet.*;
-import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
-
-
-import java.io.IOException;
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
 
 @Slf4j
-//@WebFilter(urlPatterns = "/*")
-public class LoginCheckFilter implements Filter {
-
-
-    @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        HttpServletRequest request = (HttpServletRequest) servletRequest;
-        HttpServletResponse response = (HttpServletResponse) servletResponse;
+@Component
+public class LoginCheckInterceptor implements HandlerInterceptor {
+    @Override // 目标资源方法运行前执行，返回true，放行，返回false，不放行
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         //获取请求的url
         String url = request.getRequestURL().toString();
         log.info("请求的url，{}", url);
         //判断请求中是否含有login，如果有放行
         if (url.contains("login")) {
             log.info("登录操作");
-            filterChain.doFilter(servletRequest, servletResponse);
-            return;
+            return true;
         }
         //获取jwt，判断是否存在，
         String jwt = request.getHeader("token");
@@ -39,7 +32,7 @@ public class LoginCheckFilter implements Filter {
 
             String notLogin = JSONObject.toJSONString(error);
             response.getWriter().write(notLogin);
-            return;
+            return false;
         }
         //解析jwt令牌
         try {
@@ -51,12 +44,20 @@ public class LoginCheckFilter implements Filter {
 
             String notLogin = JSONObject.toJSONString(error);
             response.getWriter().write(notLogin);
-            return;
+            return false;
         }
         //放行
         log.info("令牌合法，放行");
-        filterChain.doFilter(servletRequest, servletResponse);
+        return true;
     }
 
+    @Override //目标资源方法运行后放行
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+        System.out.println("postHandle执行");
+    }
 
+    @Override // 视图渲染完毕后运行，最后运行
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        System.out.println("afterCompletion执行");
+    }
 }
