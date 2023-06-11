@@ -1,6 +1,7 @@
 package com.lubb.mapper;
 
 import com.lubb.pojo.Emp;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -63,4 +64,12 @@ public interface EmpMapper {
 
 
     void update(Emp emp);
+
+    /**
+     * 根据部门id删除部门下的员工
+     *
+     * @param id
+     */
+    @Delete("delete from emp where dept_id = #{deptId}")
+    void deleteByDeptId(Integer id);
 }
