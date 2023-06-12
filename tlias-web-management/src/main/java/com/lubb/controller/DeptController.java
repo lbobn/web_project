@@ -1,5 +1,6 @@
 package com.lubb.controller;
 
+import com.lubb.anno.Log;
 import com.lubb.pojo.Dept;
 import com.lubb.pojo.Result;
 import com.lubb.service.DeptService;
@@ -41,6 +42,7 @@ public class DeptController {
      *
      * @return
      */
+    @Log
     @DeleteMapping("/{id}")
     public Result delete(@PathVariable Integer id) {
         log.info("根据id删除部门");
@@ -53,6 +55,7 @@ public class DeptController {
      *
      * @return
      */
+    @Log
     @PostMapping
     public Result add(@RequestBody Dept dept) {
         log.info("添加部门:{}", dept);
@@ -73,6 +76,7 @@ public class DeptController {
     /**
      * 修改部门
      */
+    @Log
     @PutMapping
     public Result update(@RequestBody Dept dept) {
         log.info("修改部门");

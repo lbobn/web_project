@@ -1,6 +1,7 @@
 package com.lubb.controller;
 
 
+import com.lubb.anno.Log;
 import com.lubb.pojo.Emp;
 import com.lubb.pojo.PageBean;
 import com.lubb.pojo.Result;
@@ -37,6 +38,7 @@ public class EmpController {
     /**
      * 删除员工
      */
+    @Log
     @DeleteMapping("/{ids}")
     public Result delete(@PathVariable List<Integer> ids) {
         log.info("批量删除，ids:{}", ids);
@@ -44,6 +46,7 @@ public class EmpController {
         return Result.success();
     }
 
+    @Log
     @PostMapping
     public Result save(@RequestBody Emp emp) {
         log.info("新增员工，{}", emp);
@@ -68,6 +71,7 @@ public class EmpController {
     /**
      * 更新员工
      */
+    @Log
     @PutMapping
     public Result update(@RequestBody Emp emp) {
         log.info("更新员工{}", emp);
