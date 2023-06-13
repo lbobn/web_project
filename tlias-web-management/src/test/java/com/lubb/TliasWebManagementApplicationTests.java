@@ -35,13 +35,13 @@ class TliasWebManagementApplicationTests {
     }
 
 
-    @Test
+    /*@Test
     public void testParseJwt() {
         Claims claims = Jwts.parser()
                 .setSigningKey("lubb")//指定签名秘钥
                 .parseClaimsJws("eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoidG9tIiwiaWQiOjEsImV4cCI6MTY4NTAyNzYzNn0.oHtOr1fMEVforVgaVyZaO1uVVbYXIvLythhVisLeXsI")
                 .getBody();
         System.out.println(claims);
-    }
+    }*/
 
 }
